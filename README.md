@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gerenciador de Tarefas
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Este é um projeto de gerenciamento de tarefas desenvolvido com [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/) e Programação Orientada a Objetos (POO). O Web site permite que os usuários criem, editem e organizem tarefas de forma intuitiva, utilizando funcionalidades de drag-and-drop para facilitar a movimentação das tarefas entre diferentes categorias.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Funcionalidades
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Criação de Tarefas**: Adicione novas tarefas com título e descrição.
+- **Edição de Tarefas**: Modifique o título e a descrição das tarefas existentes.
+- **Movimentação de Tarefas**: Arraste e solte tarefas entre diferentes categorias ou listas.
+- **Visualização Intuitiva**: Interface limpa e responsiva com Tailwind CSS.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologias Utilizadas
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Next.js**: Framework React para renderização no lado do servidor e geração de sites estáticos.
+- **TypeScript**: Superset do JavaScript que adiciona tipos estáticos.
+- **Tailwind CSS**: Framework CSS utilitário para estilização rápida e customizável.
+- **Programação Orientada a Objetos (POO)**: Para estruturar e organizar o código de forma eficiente.
 
-## Learn More
+## Estrutura do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+- **`/components`**: Componentes reutilizáveis do React.
+- **`/styles`**: Arquivos de estilo, incluindo Tailwind CSS.
+- **`/utils`**: Utilitários e funções auxiliares.
+- **`/models`**: Implementações de classes e objetos para a POO.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Exemplos de Uso
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Criar uma nova tarefa**: Clique no botão "Adicionar Tarefa", preencha os detalhes e salve.
+2. **Editar uma tarefa existente**: Clique na tarefa para abrir o formulário de edição.
+3. **Mover tarefas**: Arraste e solte tarefas entre as categorias disponíveis.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
