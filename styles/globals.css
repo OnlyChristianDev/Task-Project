@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,4 +6,104 @@
 
 body {
     font-family: 'Poppins';
+}
+
+.taskadd {
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 350px;
+    background-color: #ffffff;
+    position: absolute;
+    border-radius: 8px;
+}
+
+.taskadd input {
+    padding-left: 10px;
+    height: 40px;
+    width: 450px;
+    margin-bottom: 5px;
+    outline: none;
+    border: rgb(230, 227, 227) 1px solid;
+    border-radius: 5px;
+}
+
+.taskadd textarea {
+    padding-top: 5px;
+    border: rgb(230, 227, 227) 1px solid;
+    border-radius: 5px;
+    resize: none;
+    padding-left: 10px;
+    height: 200px;
+    width: 450px;
+    text-emphasis: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.ConfirmButton {
+    margin-right: 30px;
+    margin-top: 10px;
+    background-color: rgb(51, 111, 214);
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    transition: ease 0.5s;
+}
+.ConfirmButton:hover {
+    background-color: rgb(19, 77, 176);
+    ;
+}
+.cancelButton {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+.cancelButton:hover {
+    text-decoration: underline; 
+}
+
+.blur {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+}
+
+.blur-active {
+    background-color: rgba(0, 0, 0, 0.468);
+}
+
+.tittle {
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin-left: -310px;
+}
+
+.confirmation {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 40px;
+    width: 500px;
+    position: relative;
+    border-top: solid rgb(221, 221, 221) 1px;
+}
+
+.taskContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
