@@ -84,6 +84,10 @@ body {
     background-color: rgba(0, 0, 0, 0.468);
 }
 
+.blur-inactive {
+    opacity: 0; 
+}
+
 .tittle {
     font-weight: 500;
     color: rgb(0, 0, 0);

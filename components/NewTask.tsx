@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function NewTask() {
+interface NewTaskProps {
+    cancelarTask: () => void;
+}
+
+export default function NewTask({ cancelarTask }: NewTaskProps) {
     return (
         <motion.div
             className="taskadd"
@@ -14,7 +18,7 @@ export default function NewTask() {
             <input placeholder="Digite o nome da tarefa" className="input" />
             <textarea placeholder="Digite a descrição da tarefa" className="textarea" />
             <div className="confirmation">
-                <button className="cancelButton">Cancelar</button>
+                <button onClick={cancelarTask} className="cancelButton">Cancelar</button>
                 <button className="ConfirmButton">Adicionar</button>
             </div>
         </motion.div>

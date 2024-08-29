@@ -1,10 +1,10 @@
-"use client";
+"use client"
+
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import TasksDiv from "./TasksDiv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { motion } from 'framer-motion';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import NewTask from "./NewTask";
 
 export class Task {
@@ -21,49 +21,56 @@ export class Task {
 
 export class GerenciadorDeTask {
     public Tasks: Task[] = [];
+    private blur: HTMLElement | null = null;
+    private setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>;
 
-    public AdicionarTask() {
+    constructor(setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>) {
+        this.setShowNewTask = setShowNewTask;
+    }
+
+    public CriarTask() {
         const taskAdd = document.querySelector(".taskAdd");
-        const blur = document.createElement("div");
-        blur.classList.add("blur");
+        this.blur = document.createElement("div");
+        this.blur.classList.add("blur");
 
         const newTaskContainer = document.createElement("div");
         newTaskContainer.classList.add("taskContainer");
         taskAdd?.appendChild(newTaskContainer);
 
-        const newTaskElement = (
-            <NewTask />
-        );
-
-        ReactDOM.render(newTaskElement, newTaskContainer);
-        taskAdd?.appendChild(blur);
+        taskAdd?.appendChild(this.blur);
 
         setTimeout(() => {
-            blur.classList.add("blur-active");
+            this.blur?.classList.add("blur-active");
         }, 10);
-    }
 
-
-    public RemoverTask(id: any) {
-        
+        this.setShowNewTask(true); 
     }
 
     public CancelarTask() {
-        const cancelButton = document.querySelector("cancelButton")
-        cancelButton?.addEventListener("click", () => {
-            
-        })
+        this.setShowNewTask(false); 
+        if (this.blur) {
+            this.blur.classList.remove("blur-active");
+            this.blur.classList.add("blur-inactive"); 
+
+            setTimeout(() => {
+                this.blur?.remove();
+                this.blur = null;
+            }, 300); 
+        }
+
     }
 }
 
 export default function Tasks() {
-    const Gerenciador = new GerenciadorDeTask();
+    const [showNewTask, setShowNewTask] = useState(false);
+    const Gerenciador = new GerenciadorDeTask(setShowNewTask);
 
     const adicionarTaskHandler = () => {
-        Gerenciador.AdicionarTask();
+        Gerenciador.CriarTask();
     };
 
-    return (
+    
+return (
         <div className="bg-[#F2F4F7] flex-col w-full flex h-[100vh] items-center justify-center relative">
             <div className="flex gap-5">
                 <TasksDiv tittle={'À FAZER'} />
@@ -71,11 +78,15 @@ export default function Tasks() {
                 <TasksDiv tittle={'CONCLUIDAS'} />
             </div>
             <div className="taskAdd flex absolute items-center flex-col justify-center">
-            
+                <AnimatePresence>
+                    {showNewTask && (
+                        <NewTask cancelarTask={Gerenciador.CancelarTask.bind(Gerenciador)} />
+                    )}
+                </AnimatePresence>
             </div>
             <button onClick={adicionarTaskHandler} className="bg-blue-600 font-bold mt-5 p-2 rounded-lg flex text-white items-center justify-center hover:bg-blue-800 hover:scale-105 transition-all duration-300">
-                    Adicionar Tarefa
-                    <FontAwesomeIcon icon={faPlus} className="h-5 ml-2" />
+                Adicionar Tarefa
+                <FontAwesomeIcon icon={faPlus} className="h-5 ml-2" />
             </button>
         </div>
     );
