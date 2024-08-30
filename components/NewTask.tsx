@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 
 interface NewTaskProps {
     cancelarTask: () => void;
+    adicionarTask: () => void
 }
 
-export default function NewTask({ cancelarTask }: NewTaskProps) {
+export default function NewTask({ cancelarTask, adicionarTask }: NewTaskProps) {
     return (
         <motion.div
             className="taskadd"
@@ -19,7 +20,7 @@ export default function NewTask({ cancelarTask }: NewTaskProps) {
             <textarea placeholder="Digite a descrição da tarefa" className="textarea" />
             <div className="confirmation">
                 <button onClick={cancelarTask} className="cancelButton">Cancelar</button>
-                <button className="ConfirmButton">Adicionar</button>
+                <button onClick={adicionarTask} className="ConfirmButton">Adicionar</button>
             </div>
         </motion.div>
     );
