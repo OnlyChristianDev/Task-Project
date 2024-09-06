@@ -24,7 +24,9 @@ export class GerenciadorDeTask {
     private setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>;
     private setShowFinallyTasks: React.Dispatch<React.SetStateAction<boolean>>;
 
-    constructor(setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>, setShowFinallyTasks: React.Dispatch<React.SetStateAction<boolean>>) {
+    constructor(setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>,
+        setShowFinallyTasks: React.Dispatch<React.SetStateAction<boolean>>
+    ) {
         this.setShowNewTask = setShowNewTask;
         this.setShowFinallyTasks = setShowFinallyTasks;
         this.CriarTask = this.CriarTask.bind(this);
@@ -50,6 +52,7 @@ export class GerenciadorDeTask {
 
             this.setShowNewTask(true);
         }
+        
     }
 
     public CancelarTask() {
@@ -67,16 +70,10 @@ export class GerenciadorDeTask {
 
     public adicionarTask() {
         this.setShowNewTask(false);
-        const blur = document.querySelector(".blur");
-        if (blur) {
-            blur.classList.remove("blur-active");
-            blur.classList.add("blur-inactive");
-
-            setTimeout(() => {
-                blur.remove();
-            }, 300);
-        }
-        this.setShowFinallyTasks(true);
+        setTimeout(()=>{
+            this.setShowFinallyTasks(true);
+        }, 350)
+       
     }
 }
 
