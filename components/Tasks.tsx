@@ -52,7 +52,6 @@ export class GerenciadorDeTask {
 
             this.setShowNewTask(true);
         }
-        
     }
 
     public CancelarTask() {
@@ -78,6 +77,8 @@ export class GerenciadorDeTask {
 }
 
 export default function Tasks() {
+    const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
     const [showNewTask, setShowNewTask] = useState(false);
     const [showFinallyTasks, setShowFinallyTasks] = useState(false);
     const Gerenciador = new GerenciadorDeTask(setShowNewTask, setShowFinallyTasks);
@@ -100,7 +101,7 @@ export default function Tasks() {
                     )}
                 </AnimatePresence>
             </div>
-            {showFinallyTasks && <FinallyTasks />}
+            {showFinallyTasks && <FinallyTasks taskName={taskName} taskDescription={taskDescription} />}
             <button onClick={adicionarTaskHandler} className="bg-blue-600 font-bold mt-5 p-2 rounded-lg flex text-white items-center justify-center hover:bg-blue-800 hover:scale-105 transition-all duration-300">
                 Adicionar Tarefa
                 <FontAwesomeIcon icon={faPlus} className="h-5 ml-2" />
