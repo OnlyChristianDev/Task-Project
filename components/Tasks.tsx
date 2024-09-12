@@ -67,25 +67,46 @@ export class GerenciadorDeTask {
         }
     }
 
-    public adicionarTask() {
+    public adicionarTask(taskName: string, taskDescription: string, setTaskName: React.Dispatch<React.SetStateAction<string>>, setTaskDescription: React.Dispatch<React.SetStateAction<string>>) {
         this.setShowNewTask(false);
+        
+        setTaskName(taskName);
+        setTaskDescription(taskDescription);
+
+
         setTimeout(()=>{
             this.setShowFinallyTasks(true);
         }, 350)
-       
     }
+
 }
 
 export default function Tasks() {
-    const [taskName, setTaskName] = useState('');
+    const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState('');
     const [showNewTask, setShowNewTask] = useState(false);
     const [showFinallyTasks, setShowFinallyTasks] = useState(false);
+    
     const Gerenciador = new GerenciadorDeTask(setShowNewTask, setShowFinallyTasks);
-
     const adicionarTaskHandler = () => {
         Gerenciador.CriarTask();
     };
+
+    const removeFinallyTask = () => {
+        setShowFinallyTasks(false);
+
+        const blur = document.querySelector(".blur");
+        if (blur) {
+            blur.classList.remove("blur-active");
+            blur.classList.add("blur-inactive");
+
+            setTimeout(() => {
+                blur.remove();
+            }, 300);
+        }
+        
+    }
+
 
     return (
         <div className="bg-[#F2F4F7] flex-col w-full flex h-[100vh] items-center justify-center relative">
@@ -97,11 +118,14 @@ export default function Tasks() {
             <div className="taskAdd flex absolute items-center flex-col justify-center">
                 <AnimatePresence>
                     {showNewTask && (
-                        <NewTask adicionarTask={Gerenciador.adicionarTask} cancelarTask={Gerenciador.CancelarTask} />
+                        <NewTask adicionarTask={(name, description) => Gerenciador.adicionarTask(name, description, setTaskName, setTaskDescription)}
+                         cancelarTask={Gerenciador.CancelarTask} />
                     )}
                 </AnimatePresence>
             </div>
-            {showFinallyTasks && <FinallyTasks taskName={taskName} taskDescription={taskDescription} />}
+            <AnimatePresence>
+                	{showFinallyTasks && <FinallyTasks removeFinallyTask={removeFinallyTask} taskName={taskName} taskDescription={taskDescription} />}
+            </AnimatePresence>
             <button onClick={adicionarTaskHandler} className="bg-blue-600 font-bold mt-5 p-2 rounded-lg flex text-white items-center justify-center hover:bg-blue-800 hover:scale-105 transition-all duration-300">
                 Adicionar Tarefa
                 <FontAwesomeIcon icon={faPlus} className="h-5 ml-2" />

@@ -11,16 +11,15 @@ export default function NewTask({ cancelarTask, adicionarTask }: NewTaskProps) {
     const [taskDescription, setTaskDescription] = useState('');
 
     const handleAddTask = () => {
-        console.log("Adding Task with:", taskName, taskDescription);
         adicionarTask(taskName, taskDescription); 
     };
 
     return (
         <motion.div
             className="taskadd"
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -150 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            exit={{ opacity: 0, y: -150 }}
             transition={{ duration: 0.5 }}
         >
             <h1 className="tittle">Crie sua Tarefa</h1>
